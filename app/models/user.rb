@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   # Remember to create a migration!
 
-  has_many :post
+  has_many :posts
   has_many :comments
 
   validates_uniqueness_of :email

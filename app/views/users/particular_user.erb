@@ -1,0 +1,22 @@
+<div align="center">
+  <%=@user.name%><br>
+  <%=@user.username%><br>
+  <%=@user.email%>
+</div>
+
+
+<div align="center">
+<%@post.each do |post|%>
+  <a href="/posts/<%=post.id%>"><%=post.subject%></a>
+  <%=post.url%>
+  <hr>
+<%end%>
+</div>
+
+<div align="center">
+<%@comment.each do |comment|%>
+  Comments: <%=comment.body%><br>
+  Post: <%=comment.post_id%>
+  <hr>
+<%end%>
+</div>

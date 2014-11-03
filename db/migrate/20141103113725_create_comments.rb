@@ -8,3 +8,4 @@ class CreateComments < ActiveRecord::Migration
     end
   end
 end
+

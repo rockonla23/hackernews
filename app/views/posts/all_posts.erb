@@ -1,4 +1,7 @@
 <%@all_post.each do |post|%>
-<%=post.subject%>
+<a href="/posts/<%=post.id%>"><h2>Subject: <%=post.subject%></h2></a><br>
+<H3>URL: <%=post.url%></h3><br>
+<h3>User ID: <%=post.user_id%></h3><br>
+<hr>
 <%end%>
 

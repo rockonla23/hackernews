@@ -20,9 +20,15 @@
   <div id='cssmenu'>
 <ul>
    <li><a href='/'><span>Home</span></a></li>
-   <li><a href='/users/create'><span>Sign up</span></a></li>
    <li><a href='/posts/new'><span>Add new post</span></a></li>
+   <% if login? %>
+   <%id = User.find_by(username: session[:username])%>
+   <li><a href="/users/<%=id.id%>"><span>My profile</span></a></li>
+   <li><a href ="/logout"> Logout </a></li>
+   <%else%>
    <li><a href='/users/login'><span>Login</span></a></li>
+    <li><a href='/users/create'><span>Sign up</span></a></li>
+   <%end%>
 </ul>
 </div>
 </head>

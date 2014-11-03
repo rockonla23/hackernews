@@ -1,0 +1,27 @@
+
+<h2>Subject: <%=@post.subject%></h2><br>
+<H3>URL: <%=@post.url%></h3><br>
+<h3>Kaki post: <%=@post.user.name%></h3><br>
+<hr>
+
+<h3>Add comment.</h3>
+
+
+<form action='/posts/add_comment/<%=@post.id%>' method='post'>
+  <br>
+ <textarea cols="40" rows="5" name="body">
+  Comments
+  </textarea><br>
+<br>
+<br>
+
+  <br>
+  <input type="submit" name="submit">
+</form>
+
+<p><input type="button" onclick="history.back();" value="Back">
+<h1> Ramblings </h1>
+<%@comment.each do |comment|%>
+   Kaki Komen: <%=comment.user.name%>
+  : <%=comment.body%><br>
+<%end%>

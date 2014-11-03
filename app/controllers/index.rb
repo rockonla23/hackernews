@@ -1,3 +1,4 @@
+require 'byebug'
 enable :sessions
 
 
@@ -35,6 +36,11 @@ end
 
 
 get '/posts/new' do
+  if session[:username] != nil
+    erb :'/posts/new_post'
+  else
+    erb :'/users/invalid'
+  end
 
 end
 
@@ -60,3 +66,46 @@ get '/logout' do
   session[:username] = nil
   redirect "/"
 end
+
+post '/posts/new' do
+
+ @user = User.find_by username: session[:username]
+  @user.posts.create(subject: params[:subject], url: params[:URL])
+
+  redirect '/'
+end
+
+
+get '/posts/:post_id' do
+  @post = Post.find(params[:post_id])
+  @comment = @post.comments
+  erb :'/posts/particular_post'
+end
+
+
+
+post '/posts/add_comment/:post_id' do
+  @user = User.find_by username: session[:username]
+  @user.comments.create(body: params[:body], post_id: params[:post_id])
+  id = params[:post_id]
+
+  redirect "/posts/#{id}"
+end
+
+
+get '/users/:id' do
+  @user = User.find params[:id]
+  @post = @user.posts
+  @comment = @user.comments
+
+  erb :"/users/particular_user"
+end
+
+
+
+
+
+
+
+
+
