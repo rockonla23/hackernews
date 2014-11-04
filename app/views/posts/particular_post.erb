@@ -2,10 +2,14 @@
 <h2>Subject: <%=@post.subject%></h2><br>
 <H3>URL: <%=@post.url%></h3><br>
 <h3>Kaki post: <%=@post.user.name%></h3><br>
+
+<h4><%=@post_votes.count%> has voted this post</h4>
+<h4><%=@post_sum%> score</h4>
+
+<a href="/posts/<%="#{@post.id}"%>/1"><button type="button">Upvote</button></a>
+<a href="/posts/<%="#{@post.id}"%>/-1"><button type="button">Downvote</button></a>
 <hr>
-
 <h3>Add comment.</h3>
-
 
 <form action='/posts/add_comment/<%=@post.id%>' method='post'>
   <br>
@@ -21,7 +25,11 @@
 
 <p><input type="button" onclick="history.back();" value="Back">
 <h1> Ramblings </h1>
-<%@comment.each do |comment|%>
+<%@comments.each do |comment|%>
    Kaki Komen: <%=comment.user.name%>
   : <%=comment.body%><br>
+  <h4><%=@comment_votes.count%> has voted this comment.</h4>
+  <h4><%=@comment_sum%> score</h4>
+  <a href="/comments/<%="#{comment.id}"%>/1"><button type="button">Upvote</button></a>
+  <a href="/comments/<%="#{comment.id}"%>/-1"><button type="button">Downvote</button></a><br>
 <%end%>
