@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   # Remember to create a migration!
 
   has_many :posts
+  has_many :post_votes
+  has_many :post_voted_for, class_name: 'Post', through: :post_votes
   has_many :comments
 
   validates_uniqueness_of :email
